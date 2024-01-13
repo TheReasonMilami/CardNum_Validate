@@ -2,6 +2,9 @@ def checkLuhn(cardNo):
     nDigits = len(cardNo)
     nSum = 0
     isSecond = False
+     if len(cardNo) != 16 or not cardNo.isdigit():
+        print("invalid input. Card number must be a 16-digit numeric string")
+        return False
     for i in range(nDigits - 1, -1, -1):
         d = ord(cardNo[i]) - ord('0')
         if (isSecond == True):
@@ -11,13 +14,11 @@ def checkLuhn(cardNo):
         nSum += d%10
         
         isSecond = not isSecond
-        if (nSum % 10 == 0):
-            return True
-        else:
-            return False
+    return nSum % 10 == 0
+            
 
 if __name__ == "__main__":
-    cardNo = '79927398713'
+    cardNo = input('Enter Card Number')
     if (checkLuhn(cardNo)):
         print("this is valid card")
     else:
